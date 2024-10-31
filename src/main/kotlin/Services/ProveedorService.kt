@@ -11,7 +11,7 @@ class ProveedorService(val repository: ProveedorRepository) {
         if (proveedores.isEmpty()) {
             println("No hay proveedores")
         } else {
-            proveedores.forEach { println(it) }//todo revissar esto bien.
+            proveedores.forEach { println(it) }
         }
 
 

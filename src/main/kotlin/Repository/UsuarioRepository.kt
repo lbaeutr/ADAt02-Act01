@@ -33,7 +33,8 @@ class UsuarioRepository(emf: EntityManagerFactory) {
     fun readAll(): List<Usuario> {
         val em: EntityManager = HibernateUtils.getEntityManager("unidadMySQL")
         return try {
-            // Esto esta haciendo un select *
+            // Esto esta haciendo un select * con JPQL
+            //lo que hace es seleccionar todos los usuarios de la tabla usuarios
             val query = em.createQuery("SELECT u FROM Usuario u", Usuario::class.java)
             query.resultList
         } catch (e: Exception) {

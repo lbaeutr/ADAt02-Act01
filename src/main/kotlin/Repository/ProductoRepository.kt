@@ -49,6 +49,8 @@ class ProductoRepository(emf: EntityManagerFactory) {
         val em: EntityManager = HibernateUtils.getEntityManager("unidadMySQL")
         return try {
             // JPQL query para buscar productos cuyo stock sea 0
+            //Lenguaje de consulta de objetos Java Persistence Query Language (JPQL), para objetos persistentes.
+            // busca productos cuyo stock sea 0
             val query = em.createQuery("SELECT p FROM Producto p WHERE p.stock = 0", Producto::class.java)
             query.resultList
         } catch (e: Exception) {
@@ -62,7 +64,7 @@ class ProductoRepository(emf: EntityManagerFactory) {
     fun readProductoConStock(): List<Producto> {
         val em: EntityManager = HibernateUtils.getEntityManager("unidadMySQL")
         return try {
-            // JPQL query para buscar productos cuyo stock sea 0
+            // Igual que el anterior pero con stock mayor a 0
             val query = em.createQuery("SELECT p FROM Producto p WHERE p.stock > 0", Producto::class.java)
             query.resultList
         } catch (e: Exception) {
@@ -74,9 +76,10 @@ class ProductoRepository(emf: EntityManagerFactory) {
     }
 
     fun readAll(): List<Producto> {
+        //createquery es para hacer consultas en la base de datos con JPQL, el createquery funciona como un select * from tabla en SQL.
         val em: EntityManager = HibernateUtils.getEntityManager("unidadMySQL")
         return try {
-            val query = em.createQuery("SELECT p FROM Producto p", Producto::class.java) //todo ver
+            val query = em.createQuery("SELECT p FROM Producto p", Producto::class.java)
             query.resultList
         } catch (e: Exception) {
             e.printStackTrace()

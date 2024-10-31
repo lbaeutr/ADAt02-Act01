@@ -34,23 +34,7 @@ class ProductoService(val productoRepository: ProductoRepository, val proveedorR
         }
     }
 
-//    fun bajaProducto(){
-//        println("Introduce ID del producto: ")
-//        val idProducto = readLine()!!
-//
-//        val eliminar = productoRepository.read(idProducto)
-//
-//        if(eliminar != null){
-//            val proveedor = productoRepository.readProveedorProducto(idProducto)
-//
-//            if(proveedor != null){
-//                proveedor.removeProducto(eliminar)
-//                proveedorRepository.update(proveedor)
-//                productoRepository.delete(idProducto)
-//            }
-//        }
-//
-//    }
+
 
     fun bajaProducto() {
         println("Introduce ID del producto: ")
@@ -91,7 +75,7 @@ class ProductoService(val productoRepository: ProductoRepository, val proveedorR
         productoRepository.updateProductoStock(idProducto, stock)
     }
 
-    fun obtenerProducto(){ // todo hace falta el override de la clase producto
+    fun obtenerProducto(){
         println("Introduce la id del producto a obtener: ")
         val idProducto = productoRepository.read(readLine()!!)
         if (idProducto != null){

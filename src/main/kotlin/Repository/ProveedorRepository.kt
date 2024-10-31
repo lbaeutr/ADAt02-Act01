@@ -30,6 +30,8 @@ class ProveedorRepository(emf: EntityManagerFactory) {
     }
 
     fun readAll(): List<Proveedor> {
+
+        //createQuery: Crea un objeto Query para ejecutar una consulta JPA y devolver los resultados.
         val em: EntityManager = HibernateUtils.getEntityManager("unidadMySQL")
         return try {
             val query = em.createQuery("SELECT p FROM Proveedor p", Proveedor::class.java)

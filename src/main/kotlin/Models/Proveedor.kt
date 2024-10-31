@@ -11,7 +11,15 @@ class Proveedor (
     @Column(name = "direccion")
     val direccion: String?,
 
-    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "proveedor", orphanRemoval = true, fetch = FetchType.EAGER)//Todo ver
+    /*
+      Relación uno a muchos con la tabla productos
+        Un proveedor puede tener muchos productos
+        Un producto solo puede tener un proveedor
+        funciona con cascade = [CascadeType.ALL] para que al borrar un proveedor se borren todos los productos asociados
+        mappedBy = "proveedor" indica que la relación es bidireccional
+        fetch = FetchType.EAGER indica que se cargaran todos los productos al cargar un proveedor
+     */
+    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "proveedor", orphanRemoval = true, fetch = FetchType.EAGER)
 
     val productos : MutableList<Producto> = mutableListOf(),
 
@@ -23,7 +31,7 @@ class Proveedor (
 
     fun addProducto(producto: Producto) {
         productos.add(producto)
-        producto.proveedor = this  // TODO Referencia producto al proveedor
+        producto.proveedor = this  // Referencia producto al proveedor actual
     }
 
     fun removeProducto(producto: Producto) {

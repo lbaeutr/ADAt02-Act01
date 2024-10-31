@@ -31,6 +31,12 @@ class Producto (
     @Column(name = "stock")
     var stock: Int?,
 
+    /*
+    La relación entre Producto y Proveedor es de muchos a uno, ya que un proveedor puede tener varios productos,
+    pero un producto solo puede tener un proveedor.
+    Cascade merge y persist para que al guardar un producto se guarde también el proveedor.
+
+     */
     @ManyToOne(cascade = [CascadeType.MERGE, CascadeType.PERSIST])
     @JoinColumn(name = "id_proveedor")
     var proveedor: Proveedor?,
